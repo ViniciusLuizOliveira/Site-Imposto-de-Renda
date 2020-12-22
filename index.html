@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Imposto de Renda</title>
+</head>
+	<body>
+		<style type="text/css">
+			* {
+				font-family: Arial, sans-serif;
+			}
+			#conteudo{
+				min-height: 90vh;
+				padding-left:3vw; 
+				padding-right:3vw;
+				margin-right: 8%;
+				margin-left: 8%;
+				background-color: #FFFFFF;
+			}
+			body{
+				background-color: #FFFFFF;
+			}
+			h1{
+				text-align: center;
+				color: #000000;
+
+			}
+			h2{
+				text-align: center;
+				color: #000000;
+				margin-bottom: 8vh;
+
+			}
+			h3 {
+				text-align: center;
+				font-size: 23px;
+				color: #000000;
+
+			}
+			label{
+				font-size: 20px;
+				color: #000000;
+			}
+			#Label1{
+				margin-top: 1vh;
+				margin-left: 1vw;
+				margin-bottom: 1vh;
+			}
+			#Label2{
+				margin-left: 1vw;
+				margin-bottom: 1vh;
+			}
+			#Label3{
+				margin-left: 1vw;
+				margin-bottom: 1vh;
+			}
+			form{
+				background-color: #FFFFFF;
+				width: 60%;
+				border: 2px solid white;
+				margin-left: 3%;
+			}
+			table {
+				background-color: #00FFC9;
+  				font-size: 20px;
+  				margin-left: auto;
+  				margin-right: auto;
+  				border-collapse: collapse;
+  				width: 90%;
+  				margin-left: 4%;
+  				margin-right:4%;
+  			}
+			td, th {
+				border: 1px solid white;
+				text-align: left;
+				padding: 6px;
+				color: #000000;
+
+			}
+			tr:nth-child(even) {
+			background-color: #FFFB00;
+			}
+			#execute{
+				background-color: #000000;
+				color: #00FFC9;
+				border: 2px white solid;
+				font-size: 21px;
+				margin-bottom: 2vh;
+				margin-left: 30%;
+			}
+
+
+
+				@media only screen and (max-width: 1025px){
+
+				#conteudo{
+				border-left:4px solid white;
+				border-right:4px solid white;
+				padding-top: 1vh;
+				margin-right: 2%;
+				margin-left: 2%;
+				}
+				body{
+					background-color: #FFFFFF;
+				}
+				h1{
+					margin-top: 1vh;
+					font-size: 40px;
+				}
+				h2{
+					margin-bottom: 2vh;
+					font-size: 35px;
+
+				}
+				h3 {
+					font-size: 32px;
+				}
+				label{
+					font-size: 34px;
+					color: #000000;
+				}
+				input{
+					min-height: 26px;
+					font-size: 40px;
+				}
+				#Label1{
+					margin-top: 1vh;
+					margin-left: 1vw;
+					margin-bottom: 3vh;
+				}
+				#Label2{
+					margin-left: 1vw;
+					margin-bottom: 3vh;
+				}
+				#Label3{
+					margin-left: 1vw;
+					margin-bottom: 3vh;
+				}
+				form{
+					background-color: #FFFFFF;
+					width: 80%;
+					border: 3px solid white;
+					margin-left: 4%;
+				}
+				table {
+					background-color: #00FFC9;
+  					font-size: 20px;
+  					margin-left: auto;
+  					margin-right: auto;
+  					border-collapse: collapse;
+  					width: 90%;
+  					margin-left: 4%;
+  					margin-right:4%;
+  				}
+				td, th {
+					border: 1px solid white;
+					text-align: left;
+					padding: 6px;
+					color: #000000;
+				}
+				tr:nth-child(even) {
+				background-color: #FFFB00;
+				}
+				#execute{
+					background-color: #000000;
+					color: #00FFC9;
+					border: 2px white solid;
+					font-size: 36px;
+					margin-bottom: 2vh;
+					margin-left: 30%;
+				}
+
+					}
+		</style>
+
+
+
+		<script type="text/javascript">
+			var n, salariob, dpdt, dpdt2, inss, pinss, irpf, pirpf, salarioparcial, salariol;
+
+			function exec()
+			{
+				n = document.getElementById("nome").value;
+				salariob = document.getElementById("salario_b").value;
+				dpdt = document.getElementById("dependent").value;
+				
+
+				dpdt2 = dpdt * 189.59;
+
+				if (salariob < 1045.01) {
+					inss = salariob * 0.075;
+					pinss = "7,50%";
+				}
+				if (salariob > 1045.00 && salariob < 2089.61) {
+					inss = ((salariob - 1045) * 0.09) + 78.38;
+					pinss = "9,00%";
+				}
+				if (salariob > 2089.60 && salariob < 3134.41) {
+					inss = ((salariob - 2089.60) * 0.12) + 94.01 + 78.38;
+					pinss = "12,00%";
+				}
+				if (salariob > 3134.40 && salariob < 6101.07) {
+					inss = ((salariob - 3134.40) * 0.14) + 125.38 + 94.01 + 78.38;
+					pinss = "14,00%";
+				}
+				if (salariob > 6101.06) {
+					inss = 713.10;
+					pinss = "14,00%";
+				}
+
+				salarioparcial = salariob - inss;
+
+				if (salarioparcial < 1903.99) {
+					irpf = 0.00;
+					pirpf = "0,00%";
+				}
+				if (salarioparcial > 1903.98 && salarioparcial < 2826.66) {
+					pirpf = "7,50%";
+					irpf = ((salariob - dpdt2 - inss) * 0.075) - 142.80;
+				}
+				if (salarioparcial > 2826.65 && salarioparcial < 3751.06) {
+					pirpf = "15,00%";
+					irpf = ((salariob - dpdt2 - inss) * 0.15) - 354.80;
+				}
+				if (salarioparcial > 3751.05 && salarioparcial < 4664.69) {
+					pirpf = "22,50%";
+					irpf = ((salariob - dpdt2 - inss) * 0.225) - 636.13;
+				}
+				if (salarioparcial > 4664.68) {
+					pirpf = "27,50%";
+					irpf = ((salariob - dpdt2 - inss) * 0.275) - 869.26;
+				}
+				if (irpf < 0) {
+						irpf = 0.00;
+					}
+
+				salariol = salarioparcial - irpf;
+
+				let tabelapessoa = {nome_id:n, salario_bruto:salariob, porcentagem_inss:pinss, tbinss:inss, porcentagem_irpf:pirpf, tbirpf:irpf, salario_liquido:salariol};
+
+  				var tabela = document.getElementById("Tabela");
+  				var row = tabela.insertRow(-1);
+  				var cell1 = row.insertCell(0);
+  				var cell2 = row.insertCell(1);
+  				var cell3 = row.insertCell(2);
+  				var cell4 = row.insertCell(3);
+  				var cell5 = row.insertCell(4);
+  				var cell6 = row.insertCell(5);
+  				var cell7 = row.insertCell(6);
+  				cell1.innerHTML = tabelapessoa.nome_id;
+  				cell2.innerHTML = tabelapessoa.salario_bruto;
+  				cell3.innerHTML = tabelapessoa.porcentagem_inss;
+  				cell4.innerHTML = tabelapessoa.tbinss;
+  				cell5.innerHTML = tabelapessoa.porcentagem_irpf;
+  				cell6.innerHTML = tabelapessoa.tbirpf;
+  				cell7.innerHTML = tabelapessoa.salario_liquido;
+
+			}
+
+
+		</script>
+
+		<div id="conteudo">
+
+		<h1>Imposto de Renda</h1>
+
+		<form>
+			<div id="Label1">
+				<label>Insira o nome da pessoa: </label><input type="text" name="nome" id="nome" required>
+			</div>
+
+				<div id="Label2">
+					<label>Insira o salário bruto: </label><input type="text" name="salario_bruto" id="salario_b" required>
+				</div id="Label3">
+
+					<div id="Label3"><label>Insira o número de dependentes: </label><input type="text" name="dependentes" id="dependent" required>
+					</div>
+				<div>
+					<br><input type="button" id="execute" onClick="exec()" value="execute">
+				</div>
+		</form>
+
+		<h3>Resultado</h3>
+			
+			<table id="Tabela">
+				<tr>
+					<th>nome</th>
+					<th>salário bruto</th>
+					<th>% desconto INSS</th>
+					<th>Desconto INSS</th>
+					<th>% desconto IRPF</th>
+					<th>Desconto IRPF</th>
+					<th>Salário Líquido</th>
+				</tr>
+			</table>
+
+		</div>
+	</body>
+
+</html>
